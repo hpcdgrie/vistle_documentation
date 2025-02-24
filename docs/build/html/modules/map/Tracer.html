@@ -1,0 +1,340 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta content="metadata description" lang="en" name="description" xml:lang="en" />
+<meta content="description des métadonnées" lang="fr" name="description" xml:lang="fr" />
+<meta content="Sphinx, MyST" name="keywords" />
+<meta content="en_US" property="og:locale" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tracer &mdash; Vistle  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="VectorField" href="VectorField.html" />
+    <link rel="prev" title="ShowGrid" href="ShowGrid.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Vistle
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Build Documentation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../build/index.html">Build Instructions</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">User Documentation</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../quickstart/quickstart.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../intro/index.html">Introduction</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Module Guide</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../filter/index.html"> Filter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/index.html"> General</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geometry/index.html"> Geometry</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../info/index.html"> Info</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../insitu/index.html"> Insitu</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html"> Map</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="BoundingBox.html">BoundingBox</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Color.html">Color</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ColorMetapostPart.html">ColorMetapostPart</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ColorRandom.html">ColorRandom</a></li>
+<li class="toctree-l3"><a class="reference internal" href="CutGeometry.html">CutGeometry</a></li>
+<li class="toctree-l3"><a class="reference internal" href="CuttingSurface.html">CuttingSurface</a></li>
+<li class="toctree-l3"><a class="reference internal" href="DomainSurface.html">DomainSurface</a></li>
+<li class="toctree-l3"><a class="reference internal" href="IndexManifolds.html">IndexManifolds</a></li>
+<li class="toctree-l3"><a class="reference internal" href="IsoHeightSurface.html">IsoHeightSurface</a></li>
+<li class="toctree-l3"><a class="reference internal" href="IsoSurface.html">IsoSurface</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ShowGrid.html">ShowGrid</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Tracer</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#parameters">Parameters</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="VectorField.html">VectorField</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../read/index.html"> Read</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../render/index.html"> Render</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../test/index.html"> Test</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../vistle/index.html"> Vistle</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../lib/index.html">Library Documentation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Developer Documentation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../app/index.html">Application</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dev/index.html">Coding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dev/documentation.html">Documentation</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Vistle</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Module Guide</a></li>
+          <li class="breadcrumb-item"><a href="index.html">Map</a></li>
+      <li class="breadcrumb-item active">Tracer</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/modules/map/Tracer.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="tracer">
+<h1>Tracer<a class="headerlink" href="#tracer" title="Link to this heading"></a></h1>
+<p>compute particle traces and streamlines</p>
+<svg width="120.0em" height="16.6em" >
+<style>.text { font: normal 1.0em sans-serif;}tspan{ font: italic 1.0em sans-serif;}.moduleName{ font: bold 1.0em sans-serif;}</style>
+<rect x="0em" y="2.8em" width="12.0em" height="3.0em" rx="0.1em" ry="0.1em" style="fill:#64c8c8ff;" />
+<rect x="0.2em" y="2.8em" width="1.0em" height="1.0em" rx="0.0em" ry="0.0em" style="fill:#c81e1eff;" >
+<title>data_in0</title></rect>
+<rect x="0.7em" y="0.7999999999999998em" width="0.03333333333333333em" height="2.0em" rx="0.0em" ry="0.0em" style="fill:#000000;" />
+<rect x="0.7em" y="0.7999999999999998em" width="1.0em" height="0.03333333333333333em" rx="0.0em" ry="0.0em" style="fill:#000000;" />
+<text x="1.9em" y="0.8999999999999998em" class="text" >vector field<tspan> (data_in0)</tspan></text>
+<rect x="1.4em" y="2.8em" width="1.0em" height="1.0em" rx="0.0em" ry="0.0em" style="fill:#c81e1eff;" >
+<title>data_in1</title></rect>
+<rect x="1.9em" y="1.7999999999999998em" width="0.03333333333333333em" height="1.0em" rx="0.0em" ry="0.0em" style="fill:#000000;" />
+<rect x="1.9em" y="1.7999999999999998em" width="1.0em" height="0.03333333333333333em" rx="0.0em" ry="0.0em" style="fill:#000000;" />
+<text x="3.0999999999999996em" y="1.9em" class="text" >additional field on same geometry<tspan> (data_in1)</tspan></text>
+<text x="0.2em" y="4.65em" class="moduleName" >Tracer</text><rect x="0.2em" y="4.8em" width="1.0em" height="1.0em" rx="0.0em" ry="0.0em" style="fill:#c8c81eff;" >
+<title>data_out0</title></rect>
+<rect x="0.7em" y="5.8em" width="0.03333333333333333em" height="10.0em" rx="0.0em" ry="0.0em" style="fill:#000000;" />
+<rect x="0.7em" y="15.8em" width="1.0em" height="0.03333333333333333em" rx="0.0em" ry="0.0em" style="fill:#000000;" />
+<text x="1.9em" y="15.9em" class="text" >stream lines or points with mapped vector<tspan> (data_out0)</tspan></text>
+<rect x="1.4em" y="4.8em" width="1.0em" height="1.0em" rx="0.0em" ry="0.0em" style="fill:#c8c81eff;" >
+<title>data_out1</title></rect>
+<rect x="1.9em" y="5.8em" width="0.03333333333333333em" height="9.0em" rx="0.0em" ry="0.0em" style="fill:#000000;" />
+<rect x="1.9em" y="14.8em" width="1.0em" height="0.03333333333333333em" rx="0.0em" ry="0.0em" style="fill:#000000;" />
+<text x="3.0999999999999996em" y="14.9em" class="text" >stream lines or points with mapped field<tspan> (data_out1)</tspan></text>
+<rect x="2.5999999999999996em" y="4.8em" width="1.0em" height="1.0em" rx="0.0em" ry="0.0em" style="fill:#c8c81eff;" >
+<title>particle_id</title></rect>
+<rect x="3.0999999999999996em" y="5.8em" width="0.03333333333333333em" height="8.0em" rx="0.0em" ry="0.0em" style="fill:#000000;" />
+<rect x="3.0999999999999996em" y="13.8em" width="1.0em" height="0.03333333333333333em" rx="0.0em" ry="0.0em" style="fill:#000000;" />
+<text x="4.3em" y="13.9em" class="text" >stream lines or points with mapped particle id<tspan> (particle_id)</tspan></text>
+<rect x="3.8em" y="4.8em" width="1.0em" height="1.0em" rx="0.0em" ry="0.0em" style="fill:#c8c81eff;" >
+<title>step</title></rect>
+<rect x="4.3em" y="5.8em" width="0.03333333333333333em" height="7.0em" rx="0.0em" ry="0.0em" style="fill:#000000;" />
+<rect x="4.3em" y="12.8em" width="1.0em" height="0.03333333333333333em" rx="0.0em" ry="0.0em" style="fill:#000000;" />
+<text x="5.5em" y="12.9em" class="text" >stream lines or points with step number<tspan> (step)</tspan></text>
+<rect x="5.0em" y="4.8em" width="1.0em" height="1.0em" rx="0.0em" ry="0.0em" style="fill:#c8c81eff;" >
+<title>time</title></rect>
+<rect x="5.5em" y="5.8em" width="0.03333333333333333em" height="6.0em" rx="0.0em" ry="0.0em" style="fill:#000000;" />
+<rect x="5.5em" y="11.8em" width="1.0em" height="0.03333333333333333em" rx="0.0em" ry="0.0em" style="fill:#000000;" />
+<text x="6.7em" y="11.9em" class="text" >stream lines or points with time<tspan> (time)</tspan></text>
+<rect x="6.2em" y="4.8em" width="1.0em" height="1.0em" rx="0.0em" ry="0.0em" style="fill:#c8c81eff;" >
+<title>stepwidth</title></rect>
+<rect x="6.7em" y="5.8em" width="0.03333333333333333em" height="5.0em" rx="0.0em" ry="0.0em" style="fill:#000000;" />
+<rect x="6.7em" y="10.8em" width="1.0em" height="0.03333333333333333em" rx="0.0em" ry="0.0em" style="fill:#000000;" />
+<text x="7.9em" y="10.9em" class="text" >stream lines or points with stepwidth<tspan> (stepwidth)</tspan></text>
+<rect x="7.4em" y="4.8em" width="1.0em" height="1.0em" rx="0.0em" ry="0.0em" style="fill:#c8c81eff;" >
+<title>distance</title></rect>
+<rect x="7.9em" y="5.8em" width="0.03333333333333333em" height="4.0em" rx="0.0em" ry="0.0em" style="fill:#000000;" />
+<rect x="7.9em" y="9.8em" width="1.0em" height="0.03333333333333333em" rx="0.0em" ry="0.0em" style="fill:#000000;" />
+<text x="9.1em" y="9.9em" class="text" >stream lines or points with accumulated distance<tspan> (distance)</tspan></text>
+<rect x="8.6em" y="4.8em" width="1.0em" height="1.0em" rx="0.0em" ry="0.0em" style="fill:#c8c81eff;" >
+<title>stop_reason</title></rect>
+<rect x="9.1em" y="5.8em" width="0.03333333333333333em" height="3.0em" rx="0.0em" ry="0.0em" style="fill:#000000;" />
+<rect x="9.1em" y="8.8em" width="1.0em" height="0.03333333333333333em" rx="0.0em" ry="0.0em" style="fill:#000000;" />
+<text x="10.299999999999999em" y="8.9em" class="text" >stream lines or points with reason for finishing trace<tspan> (stop_reason)</tspan></text>
+<rect x="9.799999999999999em" y="4.8em" width="1.0em" height="1.0em" rx="0.0em" ry="0.0em" style="fill:#c8c81eff;" >
+<title>cell_index</title></rect>
+<rect x="10.299999999999999em" y="5.8em" width="0.03333333333333333em" height="2.0em" rx="0.0em" ry="0.0em" style="fill:#000000;" />
+<rect x="10.299999999999999em" y="7.8em" width="1.0em" height="0.03333333333333333em" rx="0.0em" ry="0.0em" style="fill:#000000;" />
+<text x="11.499999999999998em" y="7.8999999999999995em" class="text" >stream lines or points with cell index<tspan> (cell_index)</tspan></text>
+<rect x="10.999999999999998em" y="4.8em" width="1.0em" height="1.0em" rx="0.0em" ry="0.0em" style="fill:#c8c81eff;" >
+<title>block_index</title></rect>
+<rect x="11.499999999999998em" y="5.8em" width="0.03333333333333333em" height="1.0em" rx="0.0em" ry="0.0em" style="fill:#000000;" />
+<rect x="11.499999999999998em" y="6.8em" width="1.0em" height="0.03333333333333333em" rx="0.0em" ry="0.0em" style="fill:#000000;" />
+<text x="12.699999999999998em" y="6.8999999999999995em" class="text" >stream lines or points with block index<tspan> (block_index)</tspan></text>
+</svg>
+<section id="parameters">
+<h2>Parameters<a class="headerlink" href="#parameters" title="Link to this heading"></a></h2>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>name</p></th>
+<th class="head"><p>description</p></th>
+<th class="head"><p>type</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>taskType</p></td>
+<td><p>task type (Streamlines, MovingPoints, Pathlines, Streaklines)</p></td>
+<td><p>Int</p></td>
+</tr>
+<tr class="row-odd"><td><p>startpoint1</p></td>
+<td><p>1st initial point</p></td>
+<td><p>Vector</p></td>
+</tr>
+<tr class="row-even"><td><p>startpoint2</p></td>
+<td><p>2nd initial point</p></td>
+<td><p>Vector</p></td>
+</tr>
+<tr class="row-odd"><td><p>direction</p></td>
+<td><p>direction for plane</p></td>
+<td><p>Vector</p></td>
+</tr>
+<tr class="row-even"><td><p>no_startp</p></td>
+<td><p>number of startpoints</p></td>
+<td><p>Int</p></td>
+</tr>
+<tr class="row-odd"><td><p>max_no_startp</p></td>
+<td><p>maximum number of startpoints</p></td>
+<td><p>Int</p></td>
+</tr>
+<tr class="row-even"><td><p>steps_max</p></td>
+<td><p>maximum number of integrations per particle</p></td>
+<td><p>Int</p></td>
+</tr>
+<tr class="row-odd"><td><p>trace_len</p></td>
+<td><p>maximum trace distance</p></td>
+<td><p>Float</p></td>
+</tr>
+<tr class="row-even"><td><p>trace_time</p></td>
+<td><p>maximum trace time</p></td>
+<td><p>Float</p></td>
+</tr>
+<tr class="row-odd"><td><p>tdirection</p></td>
+<td><p>direction in which to trace (Both, Forward, Backward)</p></td>
+<td><p>Int</p></td>
+</tr>
+<tr class="row-even"><td><p>startStyle</p></td>
+<td><p>initial particle position configuration (Line, Plane, Cylinder)</p></td>
+<td><p>Int</p></td>
+</tr>
+<tr class="row-odd"><td><p>integration</p></td>
+<td><p>integration method (Euler, RK32, ConstantVelocity)</p></td>
+<td><p>Int</p></td>
+</tr>
+<tr class="row-even"><td><p>min_speed</p></td>
+<td><p>minimum particle speed</p></td>
+<td><p>Float</p></td>
+</tr>
+<tr class="row-odd"><td><p>dt_step</p></td>
+<td><p>duration of a timestep (for moving points or when data does not specify realtime</p></td>
+<td><p>Float</p></td>
+</tr>
+<tr class="row-even"><td><p>h_init</p></td>
+<td><p>fixed step size for euler integration</p></td>
+<td><p>Float</p></td>
+</tr>
+<tr class="row-odd"><td><p>h_min</p></td>
+<td><p>minimum step size for rk32 integration</p></td>
+<td><p>Float</p></td>
+</tr>
+<tr class="row-even"><td><p>h_max</p></td>
+<td><p>maximum step size for rk32 integration</p></td>
+<td><p>Float</p></td>
+</tr>
+<tr class="row-odd"><td><p>err_tol_abs</p></td>
+<td><p>absolute error tolerance for rk32 integration</p></td>
+<td><p>Float</p></td>
+</tr>
+<tr class="row-even"><td><p>err_tol_rel</p></td>
+<td><p>relative error tolerance for rk32 integration</p></td>
+<td><p>Float</p></td>
+</tr>
+<tr class="row-odd"><td><p>cell_relative</p></td>
+<td><p>whether step length control should take into account cell size</p></td>
+<td><p>Int</p></td>
+</tr>
+<tr class="row-even"><td><p>velocity_relative</p></td>
+<td><p>whether step length control should take into account velocity</p></td>
+<td><p>Int</p></td>
+</tr>
+<tr class="row-odd"><td><p>use_celltree</p></td>
+<td><p>use celltree for accelerated cell location</p></td>
+<td><p>Int</p></td>
+</tr>
+<tr class="row-even"><td><p>num_active</p></td>
+<td><p>number of particles to trace simultaneously on each node (0: no. of cores)</p></td>
+<td><p>Int</p></td>
+</tr>
+<tr class="row-odd"><td><p>particle_placement</p></td>
+<td><p>where a particle’s data shall be collected (InitialRank, RankById)</p></td>
+<td><p>Int</p></td>
+</tr>
+<tr class="row-even"><td><p>cell_index_modulus</p></td>
+<td><p>modulus for cell number output</p></td>
+<td><p>Int</p></td>
+</tr>
+<tr class="row-odd"><td><p>simplification_error</p></td>
+<td><p>tolerable relative error for result simplification</p></td>
+<td><p>Float</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="ShowGrid.html" class="btn btn-neutral float-left" title="ShowGrid" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="VectorField.html" class="btn btn-neutral float-right" title="VectorField" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Martin Aumueller, Dennis Grieger, Leyla Kern, Marko Djuric, Uwe Wössner.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

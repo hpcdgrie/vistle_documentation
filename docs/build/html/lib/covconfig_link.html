@@ -1,0 +1,158 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta content="metadata description" lang="en" name="description" xml:lang="en" />
+<meta content="description des métadonnées" lang="fr" name="description" xml:lang="fr" />
+<meta content="Sphinx, MyST" name="keywords" />
+<meta content="en_US" property="og:locale" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CovConfig - COVISE, OpenCOVER &amp; Vistle Configuration Subsystem &mdash; Vistle  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Vistle
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Build Documentation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../build/index.html">Build Instructions</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">User Documentation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../quickstart/quickstart.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../intro/index.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/index.html">Module Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index.html">Library Documentation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Developer Documentation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../app/index.html">Application</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dev/index.html">Coding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dev/documentation.html">Documentation</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Vistle</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">CovConfig - COVISE, OpenCOVER &amp; Vistle Configuration Subsystem</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/lib/covconfig_link.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="covconfig-covise-opencover-vistle-configuration-subsystem">
+<h1>CovConfig - COVISE, OpenCOVER &amp; Vistle Configuration Subsystem<a class="headerlink" href="#covconfig-covise-opencover-vistle-configuration-subsystem" title="Link to this heading"></a></h1>
+<section id="license">
+<h2>License<a class="headerlink" href="#license" title="Link to this heading"></a></h2>
+<p>Licensed under the LGPL v2.1 or newer, see <code class="docutils literal notranslate"><span class="pre">LICENSE</span></code> for details.</p>
+</section>
+<section id="build-requirements">
+<h2>Build Requirements<a class="headerlink" href="#build-requirements" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><strong>C++ compiler</strong>:
+support for C++17 (ISO/IEC 14882:2017) is required</p></li>
+<li><p><strong>CMake</strong>:
+at least 3.15</p></li>
+<li><p><strong>toml++</strong>:
+<a class="reference external" href="https://marzer.github.io/tomlplusplus/index.html">toml for C++</a> is used for reading and writing the TOML files, included as a <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">submodule</span></code>.</p></li>
+</ul>
+<p>This library is intended to be used as a <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">submodule</span></code> from the main source repository.
+By <code class="docutils literal notranslate"><span class="pre">#define</span></code>’ing <code class="docutils literal notranslate"><span class="pre">CONFIG_NAMESPACE</span></code> you can put all the libraries classes into the namespace <code class="docutils literal notranslate"><span class="pre">CONFIG_NAMESPACE::config</span></code>. This mechanism is used to
+keep configuration of <a class="reference external" href="https://www.hlrs.de/covise/">COVISE</a>, <a class="reference external" href="https://www.hlrs.de/opencover/">OpenCOVER</a> and <a class="reference external" href="https://vistle.io">Vistle</a> separated.</p>
+</section>
+<section id="usage">
+<h2>Usage<a class="headerlink" href="#usage" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>the library is not thread-safe</p></li>
+<li><p>initiate access to the config subsystem with <code class="docutils literal notranslate"><span class="pre">Access</span></code> (<code class="docutils literal notranslate"><span class="pre">#include</span> <span class="pre">&lt;access.h&gt;</span></code>)</p></li>
+<li><p>access values from configuration with <code class="docutils literal notranslate"><span class="pre">Value</span></code> template, <code class="docutils literal notranslate"><span class="pre">typedef</span></code>ed to <code class="docutils literal notranslate"><span class="pre">ConfigBool</span></code>, <code class="docutils literal notranslate"><span class="pre">ConfigInt</span></code>, <code class="docutils literal notranslate"><span class="pre">ConfigFloat</span></code> and <code class="docutils literal notranslate"><span class="pre">ConfigString</span></code> (<code class="docutils literal notranslate"><span class="pre">#include</span> <span class="pre">&lt;value.h&gt;</span></code>)</p></li>
+<li><p>access homogeneous arrays of values from configuration with <code class="docutils literal notranslate"><span class="pre">Array</span></code> template, <code class="docutils literal notranslate"><span class="pre">typedef</span></code>ed to <code class="docutils literal notranslate"><span class="pre">ConfigBoolArray</span></code>, <code class="docutils literal notranslate"><span class="pre">ConfigIntArray</span></code>, <code class="docutils literal notranslate"><span class="pre">ConfigFloatArray</span></code> and <code class="docutils literal notranslate"><span class="pre">ConfigStringArray</span></code> (<code class="docutils literal notranslate"><span class="pre">#include</span> <span class="pre">&lt;array.h&gt;</span></code>)</p></li>
+<li><p>modification of values/arrays is possible, will be stored to user configuration directory when saving of configuration path is requested</p></li>
+<li><p>install an update handler on <code class="docutils literal notranslate"><span class="pre">Value</span></code>s and <code class="docutils literal notranslate"><span class="pre">Array</span></code>s for being notified when values are changed from within same process</p></li>
+<li><p>existing sections and entries can be queried with <code class="docutils literal notranslate"><span class="pre">File</span></code> (<code class="docutils literal notranslate"><span class="pre">#include</span> <span class="pre">&lt;file.h&gt;</span></code>)</p></li>
+<li><p>revoke access with by destroying <code class="docutils literal notranslate"><span class="pre">Access</span></code></p></li>
+<li><p>on UNIX, search paths follow <a class="reference external" href="https://specifications.freedesktop.org/basedir-spec/basedir-spec-latest.html">XDG specification</a></p></li>
+<li><p>in addition, the current directory and the config subdirectory of software installation prefix are searched</p></li>
+<li><p>configuration in host and cluster specific subdirectories is preferred</p></li>
+<li><p>for every configuration path, only a single file is loaded - configuration data is not merged</p></li>
+<li><p>configuration is not reloaded when being changed on disk</p></li>
+<li><p>for getting debug output set the environment variable <code class="docutils literal notranslate"><span class="pre">COVCONFIG_DEBUG</span></code>: empty will generate all output, setting it to a non-negative level controls the amount of logging</p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Martin Aumueller, Dennis Grieger, Leyla Kern, Marko Djuric, Uwe Wössner.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
