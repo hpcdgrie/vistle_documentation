@@ -70,6 +70,7 @@ compute particle traces and streamlines
 ## Parameters
 |name|description|type|
 |-|-|-|
+|verbose|verbose output|Int|
 |taskType|task type (Streamlines, MovingPoints, Pathlines, Streaklines)|Int|
 |startpoint1|1st initial point|Vector|
 |startpoint2|2nd initial point|Vector|
@@ -93,6 +94,6 @@ compute particle traces and streamlines
 |velocity_relative|whether step length control should take into account velocity|Int|
 |use_celltree|use celltree for accelerated cell location|Int|
 |num_active|number of particles to trace simultaneously on each node (0: no. of cores)|Int|
-|particle_placement|where a particle's data shall be collected (InitialRank, RankById)|Int|
+|particle_placement|where a particle's data shall be collected (InitialRank, RankById, RankByTimestep, Rank0)|Int|
 |cell_index_modulus|modulus for cell number output|Int|
 |simplification_error|tolerable relative error for result simplification|Float|

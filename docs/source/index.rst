@@ -41,6 +41,5 @@ More infos about Architecture: https://vistle.io/architecture/
    :maxdepth: 1
    :caption: Developer Documentation
 
-   Application <app/index.rst>
    Coding <dev/index.rst>
    Documentation <dev/documentation.rst>

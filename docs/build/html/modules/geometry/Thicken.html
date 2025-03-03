@@ -66,7 +66,11 @@
 <li class="toctree-l3"><a class="reference internal" href="SpheresOverlap.html">SpheresOverlap</a></li>
 <li class="toctree-l3"><a class="reference internal" href="SplitPolyhedra.html">SplitPolyhedra</a></li>
 <li class="toctree-l3 current"><a class="current reference internal" href="#">Thicken</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#purpose">Purpose</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#ports">Ports</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#parameters">Parameters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#usage-examples">Usage Examples</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#related-modules">Related Modules</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="ToPoints.html">ToPoints</a></li>
@@ -86,7 +90,6 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Developer Documentation</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../app/index.html">Application</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../dev/index.html">Coding</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../dev/documentation.html">Documentation</a></li>
 </ul>
@@ -120,6 +123,12 @@
   <section id="thicken">
 <h1>Thicken<a class="headerlink" href="#thicken" title="Link to this heading"></a></h1>
 <p>transform lines to tubes or points to spheres</p>
+<section id="purpose">
+<h2>Purpose<a class="headerlink" href="#purpose" title="Link to this heading"></a></h2>
+<p>The <strong>Thicken</strong> module can be used to expand lines into tubes or points into spheres. The radius of the resulting tube/sphere can be set to a fixed value or be dependent of a given scalar value.</p>
+</section>
+<section id="ports">
+<h2>Ports<a class="headerlink" href="#ports" title="Link to this heading"></a></h2>
 <svg width="50.599999999999994em" height="8.6em" >
 <style>.text { font: normal 1.0em sans-serif;}tspan{ font: italic 1.0em sans-serif;}.moduleName{ font: bold 1.0em sans-serif;}</style>
 <rect x="0em" y="2.8em" width="5.06em" height="3.0em" rx="0.1em" ry="0.1em" style="fill:#64c8c8ff;" />
@@ -144,6 +153,9 @@
 <rect x="1.9em" y="6.8em" width="1.0em" height="0.03333333333333333em" rx="0.0em" ry="0.0em" style="fill:#000000;" />
 <text x="3.0999999999999996em" y="6.8999999999999995em" class="text" >tubes or spheres with mapped data<tspan> (data_out)</tspan></text>
 </svg>
+<p>The first input port <code class="docutils literal notranslate"><span class="pre">grid_in</span></code> is required and expects lines or points which the module will expand to tubes or spheres. The module automatically detects whether lines or spheres are provided.
+The second input port <code class="docutils literal notranslate"><span class="pre">data_in</span></code> is optional and takes a data field that can be used to calculate the radii of these tubes/spheres.</p>
+</section>
 <section id="parameters">
 <h2>Parameters<a class="headerlink" href="#parameters" title="Link to this heading"></a></h2>
 <table class="docutils align-default">
@@ -188,6 +200,39 @@
 </tr>
 </tbody>
 </table>
+<p>There are different modes for setting the radius of the resulting geometric bodies which can be selected with <code class="docutils literal notranslate"><span class="pre">map_mode</span></code> in the parameter window. Additionally, the <code class="docutils literal notranslate"><span class="pre">radius</span></code> and <code class="docutils literal notranslate"><span class="pre">sphere</span> <span class="pre">scale</span></code> parameters can be altered, to fine-tune the resulting radius and a <code class="docutils literal notranslate"><span class="pre">range</span></code> can be given for clipping the values of the radii.</p>
+<section id="map-modes">
+<h3>Map modes:<a class="headerlink" href="#map-modes" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><strong>DoNothing:</strong> Does not change the geometry. However, if <code class="docutils literal notranslate"><span class="pre">data_in</span></code> is not empty, the mapped data is added to <code class="docutils literal notranslate"><span class="pre">grid_in</span></code> and returned through the <code class="docutils literal notranslate"><span class="pre">data_out</span></code> port.</p></li>
+<li><p><strong>Fixed:</strong> Sets the radius to <code class="docutils literal notranslate"><span class="pre">radius</span></code>. If the input grid is a spheres object, it additionally multiplies the value <code class="docutils literal notranslate"><span class="pre">sphere</span> <span class="pre">scale</span></code> to the radius. We will refer to this value as <em>Fixed-scale</em> in the following.</p></li>
+<li><p><strong>Radius or InvRadius</strong>: Maps the data values (or its reciprocal, respectively) provided through <code class="docutils literal notranslate"><span class="pre">data_in</span></code> (multiplied with <em>Fixed-scale</em>) to the radii of each data point/line. If the data is three-dimensional, the L2-norm is calculated.</p></li>
+<li><p><strong>Surface or InvSurface</strong>: Like <strong>Radius or InvRadius</strong>, respectively, but before <strong>Fixed-Scale</strong> is multiplied to the radius, the square root of the values in <code class="docutils literal notranslate"><span class="pre">data_in</span></code>is calculated.</p></li>
+<li><p><strong>Volume or InvVolume</strong>: Like <strong>Surface or InvSurface</strong>, respectively, but instead of the square root, the cube root is calculated.</p></li>
+</ul>
+</section>
+</section>
+<section id="usage-examples">
+<h2>Usage Examples<a class="headerlink" href="#usage-examples" title="Link to this heading"></a></h2>
+<figure float="left">
+    <img src="thickenWorkflow.png" width=300/>
+    <img src="thickenExampleResult.png" width=350/>
+    <figcaption>Fig.1. Example workflow using Thicken (left) and step-by-step results (right). On the top-right, a scalar data set is shown as points which can only be seen by zooming in considerably. In the center, the same data set is shown as spheres. At the bottom, the vector field has been added, after expanding its lines into tubes.</figcaption>
+</figure>
+<p>In this example, the scalar data field of a data set is first transformed into points via <a class="reference internal" href="ToPoints.html"><span class="std std-doc">ToPoints</span></a> (see top-right image) and then thickened into spheres (see image in the center of the right image). The radii of the spheres depend on the scalar data field.
+<strong>Note:</strong> To avoid rendering errors, it is important to pass the output to the <a class="reference internal" href="ToTriangles.html"><span class="std std-doc">ToTriangles</span></a> module whose <code class="docutils literal notranslate"><span class="pre">transform</span> <span class="pre">spheres</span></code> parameter has been <strong>enabled</strong>.</p>
+<p>Moreover, three-dimensional input data is transformed into a vector field through the <a class="reference internal" href="../map/VectorField.html"><span class="std std-doc">VectorField</span></a> module and the resulting lines are expanded into tubes (see bottom of the right image).</p>
+</section>
+<section id="related-modules">
+<h2>Related Modules<a class="headerlink" href="#related-modules" title="Link to this heading"></a></h2>
+<section id="often-used-with">
+<h3>Often Used With<a class="headerlink" href="#often-used-with" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><a class="reference internal" href="ToTriangles.html"><span class="std std-doc">ToTriangles</span></a></p></li>
+<li><p><a class="reference internal" href="ToPoints.html"><span class="std std-doc">ToPoints</span></a></p></li>
+<li><p><a class="reference internal" href="../map/VectorField.html"><span class="std std-doc">VectorField</span></a></p></li>
+</ul>
+</section>
 </section>
 </section>
 

@@ -3,7 +3,7 @@
 The Vistle GUI provides an intuitive way to assemble, configure and execute workflows.
 It is composed of four main areas: The [workflow area](#workflow-area); a [module browser and parameters area](#module-browser-and-parameters); a [console](#vistle-console) and a [menu bar](#menu-bar).
 
-![](gui.png)
+![](../../pictures/gui.png)
 
 
 ## Workflow Area

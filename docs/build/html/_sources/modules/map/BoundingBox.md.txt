@@ -2,6 +2,16 @@
 # BoundingBox
 compute bounding boxes
 
+## Purpose
+
+The bounding box can be used as a rough guide to the interesting areas of the dat set. The box can
+also provide visual clues that help with orientation in 3D space. Showing bounding boxes for
+individual blocks will allow you to assess the partitioning of your data. The numerical values can
+be used to craft input for modules requiring coordinates as parameter input.
+
+## Ports
+
+
 <svg width="73.8em" height="6.6em" >
 <style>.text { font: normal 1.0em sans-serif;}tspan{ font: italic 1.0em sans-serif;}.moduleName{ font: bold 1.0em sans-serif;}</style>
 <rect x="0em" y="1.8em" width="7.38em" height="3.0em" rx="0.1em" ry="0.1em" style="fill:#64c8c8ff;" />
@@ -17,6 +27,13 @@ compute bounding boxes
 <text x="1.9em" y="5.8999999999999995em" class="text" >bounding box<tspan> (grid_out)</tspan></text>
 </svg>
 
+The BoundingBox module takes its geometry input from `grid_in` and finds global minimum and maximum
+values for its coordinates. The result of this process can be seen in its parameter window as the
+values of the `min` and `max` parameters. The location of the extremal values are recorded in its
+other output parameters. It also provides a tight axis-aligned cuboid around the domain of the data
+at the `grid_out` output.
+
+
 ## Parameters
 |name|description|type|
 |-|-|-|
@@ -27,3 +44,20 @@ compute bounding boxes
 |max_block|output parameter: block numbers containing maximum|IntVector|
 |min_index|output parameter: indices of minimum|IntVector|
 |max_index|output parameter: indices of maximum|IntVector|
+
+By enabling `per_block`, it creates an enclosing cuboid for each input
+block individually instead of for all blocks globally.
+
+## Usage Examples
+
+![](../../pictures/tiny-covise-net.png)
+Workflow for reading scalar and vector fields and drawing a bounding box around the domain of the data
+
+![](../../pictures/tiny-covise.png)
+Rendering of visualization with a enclosing bounding box
+
+## Related Modules
+
+### Similar Modules
+
+[Extrema](../../modules/info/Extrema.md)

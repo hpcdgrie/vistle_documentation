@@ -2,6 +2,18 @@
 # ReadCsv
 read .CSV tables
 
+## Purpose
+
+This module is designed to read all CSV files in a directory and convert them to one point objects per file. Optional all files can be converted into a single points object or just a single file can be selected.
+
+
+
+
+
+---
+
+## Ports
+
 <svg width="70.0em" height="9.6em" >
 <style>.text { font: normal 1.0em sans-serif;}tspan{ font: italic 1.0em sans-serif;}.moduleName{ font: bold 1.0em sans-serif;}</style>
 <rect x="0em" y="0.8em" width="7.0em" height="3.0em" rx="0.1em" ry="0.1em" style="fill:#64c8c8ff;" />
@@ -32,6 +44,7 @@ read .CSV tables
 <text x="6.7em" y="4.8999999999999995em" class="text" >data on points from column dataName3<tspan> (data_out3)</tspan></text>
 </svg>
 
+
 ## Parameters
 |name|description|type|
 |-|-|-|
@@ -51,3 +64,20 @@ read .CSV tables
 |data_name_1|Name of data column outputted at data_out_1)|Int|
 |data_name_2|Name of data column outputted at data_out_2)|Int|
 |data_name_3|Name of data column outputted at data_out_3)|Int|
+
+x and y name are mandatory to create at least 2D points, z name and data names are optional.
+
+### Important to note
+Supported delimiters are comma, semicolon and tab. Decimal separators can be points or comma if comma is not used as delimiter.
+
+
+## Example Usage
+
+## Related Modules
+
+### Often Used With
+
+- [Color](../../modules/map/Color.md)
+- [MapDrape]()
+- [IndexManifolds](../../modules/map/IndexManifolds.md)
+- [Variant](../../modules/general/Variant.md)

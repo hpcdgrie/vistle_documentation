@@ -62,7 +62,11 @@
 <li class="toctree-l2"><a class="reference internal" href="../insitu/index.html"> Insitu</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="index.html"> Map</a><ul class="current">
 <li class="toctree-l3 current"><a class="current reference internal" href="#">BoundingBox</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#purpose">Purpose</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#ports">Ports</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#parameters">Parameters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#usage-examples">Usage Examples</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#related-modules">Related Modules</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="Color.html">Color</a></li>
@@ -89,7 +93,6 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Developer Documentation</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../app/index.html">Application</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../dev/index.html">Coding</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../dev/documentation.html">Documentation</a></li>
 </ul>
@@ -123,6 +126,15 @@
   <section id="boundingbox">
 <h1>BoundingBox<a class="headerlink" href="#boundingbox" title="Link to this heading"></a></h1>
 <p>compute bounding boxes</p>
+<section id="purpose">
+<h2>Purpose<a class="headerlink" href="#purpose" title="Link to this heading"></a></h2>
+<p>The bounding box can be used as a rough guide to the interesting areas of the dat set. The box can
+also provide visual clues that help with orientation in 3D space. Showing bounding boxes for
+individual blocks will allow you to assess the partitioning of your data. The numerical values can
+be used to craft input for modules requiring coordinates as parameter input.</p>
+</section>
+<section id="ports">
+<h2>Ports<a class="headerlink" href="#ports" title="Link to this heading"></a></h2>
 <svg width="73.8em" height="6.6em" >
 <style>.text { font: normal 1.0em sans-serif;}tspan{ font: italic 1.0em sans-serif;}.moduleName{ font: bold 1.0em sans-serif;}</style>
 <rect x="0em" y="1.8em" width="7.38em" height="3.0em" rx="0.1em" ry="0.1em" style="fill:#64c8c8ff;" />
@@ -137,6 +149,12 @@
 <rect x="0.7em" y="5.8em" width="1.0em" height="0.03333333333333333em" rx="0.0em" ry="0.0em" style="fill:#000000;" />
 <text x="1.9em" y="5.8999999999999995em" class="text" >bounding box<tspan> (grid_out)</tspan></text>
 </svg>
+<p>The BoundingBox module takes its geometry input from <code class="docutils literal notranslate"><span class="pre">grid_in</span></code> and finds global minimum and maximum
+values for its coordinates. The result of this process can be seen in its parameter window as the
+values of the <code class="docutils literal notranslate"><span class="pre">min</span></code> and <code class="docutils literal notranslate"><span class="pre">max</span></code> parameters. The location of the extremal values are recorded in its
+other output parameters. It also provides a tight axis-aligned cuboid around the domain of the data
+at the <code class="docutils literal notranslate"><span class="pre">grid_out</span></code> output.</p>
+</section>
 <section id="parameters">
 <h2>Parameters<a class="headerlink" href="#parameters" title="Link to this heading"></a></h2>
 <table class="docutils align-default">
@@ -177,6 +195,22 @@
 </tr>
 </tbody>
 </table>
+<p>By enabling <code class="docutils literal notranslate"><span class="pre">per_block</span></code>, it creates an enclosing cuboid for each input
+block individually instead of for all blocks globally.</p>
+</section>
+<section id="usage-examples">
+<h2>Usage Examples<a class="headerlink" href="#usage-examples" title="Link to this heading"></a></h2>
+<p><img alt="" src="../../_images/tiny-covise-net.png" />
+Workflow for reading scalar and vector fields and drawing a bounding box around the domain of the data</p>
+<p><img alt="" src="../../_images/tiny-covise.png" />
+Rendering of visualization with a enclosing bounding box</p>
+</section>
+<section id="related-modules">
+<h2>Related Modules<a class="headerlink" href="#related-modules" title="Link to this heading"></a></h2>
+<section id="similar-modules">
+<h3>Similar Modules<a class="headerlink" href="#similar-modules" title="Link to this heading"></a></h3>
+<p><a class="reference internal" href="../info/Extrema.html"><span class="std std-doc">Extrema</span></a></p>
+</section>
 </section>
 </section>
 

@@ -62,7 +62,13 @@
 <li class="toctree-l2 current"><a class="reference internal" href="index.html"> Insitu</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="InSituModule.html">InSituModule</a></li>
 <li class="toctree-l3 current"><a class="current reference internal" href="#">LibSimController</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#purpose">Purpose</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#data-preparation">Data Preparation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#ports">Ports</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#parameters">Parameters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#usage-examples">Usage Examples</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#related-modules">Related Modules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#acknowledgements">Acknowledgements</a></li>
 </ul>
 </li>
 </ul>
@@ -78,7 +84,6 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Developer Documentation</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../app/index.html">Application</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../dev/index.html">Coding</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../dev/documentation.html">Documentation</a></li>
 </ul>
@@ -112,10 +117,23 @@
   <section id="libsimcontroller">
 <h1>LibSimController<a class="headerlink" href="#libsimcontroller" title="Link to this heading"></a></h1>
 <p>acquire data from LibSim instrumented simulations</p>
+<section id="purpose">
+<h2>Purpose<a class="headerlink" href="#purpose" title="Link to this heading"></a></h2>
+<p>Retrieve simulation data during the runtime of LibSim instrumented simulations.</p>
+</section>
+<section id="data-preparation">
+<h2>Data Preparation<a class="headerlink" href="#data-preparation" title="Link to this heading"></a></h2>
+<p>The LibSim instrumented simulation must initialize MPI with MPI_Init_thread and thread support MPI_THREAD_MULTIPLE.</p>
+</section>
+<section id="ports">
+<h2>Ports<a class="headerlink" href="#ports" title="Link to this heading"></a></h2>
 <svg width="102.8em" height="4.6em" >
 <style>.text { font: normal 1.0em sans-serif;}tspan{ font: italic 1.0em sans-serif;}.moduleName{ font: bold 1.0em sans-serif;}</style>
 <rect x="0em" y="0.8em" width="10.28em" height="3.0em" rx="0.1em" ry="0.1em" style="fill:#64c8c8ff;" />
 <text x="0.2em" y="2.6500000000000004em" class="moduleName" >LibSimController</text></svg>
+<p>Ports are dynamically created depending on the data the simulation provides. Data for unconnected ports
+is not requested from LibSim.</p>
+</section>
 <section id="parameters">
 <h2>Parameters<a class="headerlink" href="#parameters" title="Link to this heading"></a></h2>
 <table class="docutils align-default">
@@ -156,6 +174,89 @@
 </tr>
 </tbody>
 </table>
+<p>Depending on the connected ports and the frequency parameter the module requests data from the simulation.
+Once the simulation generates the requested data the module is automatically executed.</p>
+<section id="simulation-specific-commands">
+<h3>Simulation Specific Commands<a class="headerlink" href="#simulation-specific-commands" title="Link to this heading"></a></h3>
+<p>Connected simulations might provide additional commands that are (for now) represented by parameters. Changing one of these parameters triggers the displayed action in the simulation, while the actual value of bolean parameters is meaningless the simulation can also specify commands that take a string as argument. These commands are represented as string input parameters
+and send their string value to the simulation on change.</p>
+</section>
+</section>
+<section id="usage-examples">
+<h2>Usage Examples<a class="headerlink" href="#usage-examples" title="Link to this heading"></a></h2>
+<section id="mandelbrot-example">
+<h3>Mandelbrot example<a class="headerlink" href="#mandelbrot-example" title="Link to this heading"></a></h3>
+<p>-Download the <a class="reference external" href="https://www.visitusers.org/index.php?title=VisIt-tutorial-in-situ#Resources">Mandelbrot simulation</a> and edit the Makefile as described. Additionally set “CXX=mpic++” and add -DPARALLEL to CXXFLAGS<br />
+-Open mandelbrot.C and change:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="w">    </span><span class="cm">/* Initialize MPI */</span>
+<span class="w">    </span><span class="n">MPI_Init</span><span class="p">(</span><span class="o">&amp;</span><span class="n">argc</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">argv</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>to</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="w">    </span><span class="cm">/* Initialize MPI */</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">provided</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">MPI_THREAD_SINGLE</span><span class="p">;</span>
+<span class="w">    </span><span class="n">MPI_Init_thread</span><span class="p">(</span><span class="o">&amp;</span><span class="n">argc</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">argv</span><span class="p">,</span><span class="w"> </span><span class="n">MPI_THREAD_MULTIPLE</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">provided</span><span class="p">);</span>
+</pre></div>
+</div>
+<section id="for-multi-process-vistle">
+<h4>For multi process Vistle:<a class="headerlink" href="#for-multi-process-vistle" title="Link to this heading"></a></h4>
+<p>-build and run the simulation.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>make
+<span class="nb">export</span><span class="w"> </span><span class="nv">LD_LIBRARY_PATH</span><span class="o">=</span>~/src/vistle/build/lib<span class="s2">&quot;</span>
+<span class="s2">mpirun -np 2 ./mandelbrot</span>
+</pre></div>
+</div>
+<p>-start vistle in a new terminal</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">export</span><span class="w"> </span><span class="nv">MPISIZE</span><span class="o">=</span><span class="m">2</span>
+vistle
+</pre></div>
+</div>
+<p>-start the LibSimController module and set the path parameter to the LibSim file.<br />
+The default location for these files is:<br />
+$HOME/.visit/simulations/<em>hash</em>.mandelbrot_par.sim2.</p>
+</section>
+<section id="for-single-process-vistle">
+<h4>For single process Vistle:<a class="headerlink" href="#for-single-process-vistle" title="Link to this heading"></a></h4>
+<p>-build and run the simulation.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>make
+<span class="nb">export</span><span class="w"> </span><span class="nv">VISTLE_ROOT</span><span class="o">=</span>~/src/vistle/build/
+<span class="nb">export</span><span class="w"> </span><span class="nv">LD_LIBRARY_PATH</span><span class="o">=</span><span class="nv">$VISTLE_ROOT</span>/lib<span class="s2">&quot;</span>
+<span class="s2">#to use COVER</span>
+<span class="s2">export LD_LIBRARY_PATH=</span><span class="nv">$LD_LIBRARY_PATH</span><span class="s2">:~/src/covise/archsuffix/lib&quot;</span>
+<span class="nb">export</span><span class="w"> </span><span class="nv">COVISEDIR</span><span class="o">=</span><span class="nv">$HOME</span>/src/covise
+<span class="nb">export</span><span class="w"> </span><span class="nv">COVISE_PATH</span><span class="o">=</span><span class="nv">$VISTLE_ROOT</span>:<span class="nv">$COVISEDIR</span>
+
+
+mpirun<span class="w"> </span>-np<span class="w"> </span><span class="m">2</span><span class="w"> </span>./mandelbrot
+</pre></div>
+</div>
+<p>-start vistle hub in a new terminal with the LibSim start option and the path to the sim2 file</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">export</span><span class="w"> </span><span class="nv">MPISIZE</span><span class="o">=</span><span class="m">2</span>
+vistle<span class="w"> </span>-l<span class="w"> </span><span class="nv">$HOME</span>/.visit/simulations/hash.mandelbrot_par.sim2
+</pre></div>
+</div>
+<p>-start the LibSimController module</p>
+</section>
+<section id="for-both-versions">
+<h4>For both versions:<a class="headerlink" href="#for-both-versions" title="Link to this heading"></a></h4>
+<p>The module should now display two output ports: AMR mesh and mandelbrot.<br />
+-enable VTK variables for the LibSimController module<br />
+-connect the mandelbrot port with the following modues as shown in the picture:</p>
+<p><img alt="" src="../../_images/mandelbrot_map.png" /></p>
+<p>-enable quad for Domainsurface<br />
+-pres step in the LibSimController module to execute one timestep or type <em>step</em> in the commandline of the simulation
+-in COVER <em>view all</em> and rotate the image. Use <em>Navigation/Center view</em> to allign the image. The rusult should look like:</p>
+<p><img alt="" src="../../_images/mandelbrot.png" /></p>
+</section>
+</section>
+</section>
+<section id="related-modules">
+<h2>Related Modules<a class="headerlink" href="#related-modules" title="Link to this heading"></a></h2>
+<p>SenseiController</p>
+</section>
+<section id="acknowledgements">
+<h2>Acknowledgements<a class="headerlink" href="#acknowledgements" title="Link to this heading"></a></h2>
+<p>Developed through funding from the EXCELLERAT centre of excellence.</p>
 </section>
 </section>
 

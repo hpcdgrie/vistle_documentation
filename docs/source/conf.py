@@ -87,4 +87,4 @@ for file_path in glob.glob(os.path.join(moduleDorectory, '*')):
         run("../..", ["docs/source/modules/" + category], "modules/" + category, True)        
 
 run("../..", ["lib/vistle"], "lib", exclude_dirs=["toml"])
-run("../..", ["app"], "app")
+# run("../..", ["app"], "app")

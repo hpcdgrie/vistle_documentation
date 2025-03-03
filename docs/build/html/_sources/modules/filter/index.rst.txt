@@ -9,7 +9,6 @@ Filter
    CellToVertVtkm.md
    Displace.md
    FilterCells.md
-   MapDrape.md
    Sample.md
    ScalarToVec.md
    SplitDimensions.md

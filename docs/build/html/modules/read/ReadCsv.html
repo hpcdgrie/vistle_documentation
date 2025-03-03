@@ -23,7 +23,7 @@
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="ReadDuisburg" href="ReadDuisburg.html" />
+    <link rel="next" title="ReadDyna3D" href="ReadDyna3D.html" />
     <link rel="prev" title="ReadCoviseDirectory" href="ReadCoviseDirectory.html" /> 
 </head>
 
@@ -63,27 +63,27 @@
 <li class="toctree-l2"><a class="reference internal" href="../map/index.html"> Map</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="index.html"> Read</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="LoadCover.html">LoadCover</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ReadCfx.html">ReadCfx</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ReadCovise.html">ReadCovise</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ReadCoviseDirectory.html">ReadCoviseDirectory</a></li>
 <li class="toctree-l3 current"><a class="current reference internal" href="#">ReadCsv</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#purpose">Purpose</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#ports">Ports</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#parameters">Parameters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#example-usage">Example Usage</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#related-modules">Related Modules</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="ReadDuisburg.html">ReadDuisburg</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ReadDyna3D.html">ReadDyna3D</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ReadEnsight.html">ReadEnsight</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ReadFoam.html">ReadFoam</a></li>
-<li class="toctree-l3"><a class="reference internal" href="ReadIagNetcdf.html">ReadIagNetcdf</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ReadIagTecplot.html">ReadIagTecplot</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ReadIewMatlabCsvExports.html">ReadIewMatlabCsvExports</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ReadItlrFs3d.html">ReadItlrFs3d</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ReadModel.html">ReadModel</a></li>
-<li class="toctree-l3"><a class="reference internal" href="ReadMpas.html">ReadMpas</a></li>
-<li class="toctree-l3"><a class="reference internal" href="ReadMpasPnetcdf.html">ReadMpasPnetcdf</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ReadNek5000.html">ReadNek5000</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ReadSoundPlan.html">ReadSoundPlan</a></li>
-<li class="toctree-l3"><a class="reference internal" href="ReadTsunami.html">ReadTsunami</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ReadVtk.html">ReadVtk</a></li>
-<li class="toctree-l3"><a class="reference internal" href="ReadWrfChem.html">ReadWrfChem</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../render/index.html"> Render</a></li>
@@ -95,7 +95,6 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Developer Documentation</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../app/index.html">Application</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../dev/index.html">Coding</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../dev/documentation.html">Documentation</a></li>
 </ul>
@@ -129,6 +128,13 @@
   <section id="readcsv">
 <h1>ReadCsv<a class="headerlink" href="#readcsv" title="Link to this heading"></a></h1>
 <p>read .CSV tables</p>
+<section id="purpose">
+<h2>Purpose<a class="headerlink" href="#purpose" title="Link to this heading"></a></h2>
+<p>This module is designed to read all CSV files in a directory and convert them to one point objects per file. Optional all files can be converted into a single points object or just a single file can be selected.</p>
+</section>
+<hr class="docutils" />
+<section id="ports">
+<h2>Ports<a class="headerlink" href="#ports" title="Link to this heading"></a></h2>
 <svg width="70.0em" height="9.6em" >
 <style>.text { font: normal 1.0em sans-serif;}tspan{ font: italic 1.0em sans-serif;}.moduleName{ font: bold 1.0em sans-serif;}</style>
 <rect x="0em" y="0.8em" width="7.0em" height="3.0em" rx="0.1em" ry="0.1em" style="fill:#64c8c8ff;" />
@@ -158,6 +164,7 @@
 <rect x="5.5em" y="4.8em" width="1.0em" height="0.03333333333333333em" rx="0.0em" ry="0.0em" style="fill:#000000;" />
 <text x="6.7em" y="4.8999999999999995em" class="text" >data on points from column dataName3<tspan> (data_out3)</tspan></text>
 </svg>
+</section>
 <section id="parameters">
 <h2>Parameters<a class="headerlink" href="#parameters" title="Link to this heading"></a></h2>
 <table class="docutils align-default">
@@ -234,6 +241,26 @@
 </tr>
 </tbody>
 </table>
+<p>x and y name are mandatory to create at least 2D points, z name and data names are optional.</p>
+<section id="important-to-note">
+<h3>Important to note<a class="headerlink" href="#important-to-note" title="Link to this heading"></a></h3>
+<p>Supported delimiters are comma, semicolon and tab. Decimal separators can be points or comma if comma is not used as delimiter.</p>
+</section>
+</section>
+<section id="example-usage">
+<h2>Example Usage<a class="headerlink" href="#example-usage" title="Link to this heading"></a></h2>
+</section>
+<section id="related-modules">
+<h2>Related Modules<a class="headerlink" href="#related-modules" title="Link to this heading"></a></h2>
+<section id="often-used-with">
+<h3>Often Used With<a class="headerlink" href="#often-used-with" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><a class="reference internal" href="../map/Color.html"><span class="std std-doc">Color</span></a></p></li>
+<li><p><a class="reference internal" href="#"><span class="xref myst">MapDrape</span></a></p></li>
+<li><p><a class="reference internal" href="../map/IndexManifolds.html"><span class="std std-doc">IndexManifolds</span></a></p></li>
+<li><p><a class="reference internal" href="../general/Variant.html"><span class="std std-doc">Variant</span></a></p></li>
+</ul>
+</section>
 </section>
 </section>
 
@@ -242,7 +269,7 @@
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="ReadCoviseDirectory.html" class="btn btn-neutral float-left" title="ReadCoviseDirectory" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="ReadDuisburg.html" class="btn btn-neutral float-right" title="ReadDuisburg" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="ReadDyna3D.html" class="btn btn-neutral float-right" title="ReadDyna3D" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
