@@ -15,6 +15,7 @@ import glob
 import sys
 sys.path.insert(0, os.path.abspath('.'))
 from mdlink import run
+from mdlink import copyHtmlImages
 from clear import deleteDir
 
 
@@ -78,13 +79,15 @@ html_theme = 'sphinx_rtd_theme'
 
 autosectionlabel_prefix_document = True
 deleteDir("../build")
-# run("../..", ["docs/source/modules"], "modules", link_rst_only=True)
+# run("../..", ["docs/source/module"], "module", link_rst_only=True)
 
-moduleDorectory = os.path.dirname(os.path.realpath(__file__)) + "/modules"
-for file_path in glob.glob(os.path.join(moduleDorectory, '*')):
+moduleDirectory = os.path.dirname(os.path.realpath(__file__)) + "/module"
+for file_path in glob.glob(os.path.join(moduleDirectory, '*')):
     if os.path.isdir(file_path):
         category = os.path.basename(file_path)
-        run("../..", ["docs/source/modules/" + category], "modules/" + category, True)        
+        run("../..", ["docs/source/module/" + category], "module/" + category, True)        
 
-run("../..", ["lib/vistle"], "lib", exclude_dirs=["toml"])
+copyHtmlImages(moduleDirectory)
+
+# run("../..", ["lib/vistle"], "lib", exclude_dirs=["toml"])
 # run("../..", ["app"], "app")

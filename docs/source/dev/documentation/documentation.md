@@ -10,16 +10,14 @@ Links to Vistle modules will be automatically generated for keys with the syntax
 ```
 [ModuleName]()
 ```
-Pictures should be checked in under 
+Additional sources from the source tree that are needed for the documentation, e.g. README files or pictures have to be presented to the  
+documentation build proces via cmake, e.g.:
     
-    vistle/doc/source/pictures
+    vistle_install_docs(README.md test.png)
 
-and can be referenced by
-```
-![](pictureFileName.png)   
-```
+These files are copied to the documentation directory under docs/readme.
 
-Documentation for modules is handled specially: their source markdown files must reside in the source tree module directory and be named after the module it describes (vistle/modules/category/modulename.md). The module documentation can contain special tags that are replaced when the documentation is built:
+Documentation for modules is handled specially: their source markdown files must reside in the source tree module directory and be named after the module it describes (vistle/module/category/modulename.md). The module documentation can contain special tags that are replaced when the documentation is built:
 
     [headline]:<>   : the module name and tooltip description
     [moduleHtml]:<> : graphical representation of the modules input and output ports
@@ -31,18 +29,19 @@ Additionally there should be at least one example presented that shows how the m
     
     [example]:<example_net> : generate images of the workflow and the result
 
-    (der Viewpoint könnte in covconfig gespeichert werden, dann landet er im vsl file und man bräuhte keinen extra viewport)
 
-where example_net is a checked in .vsl file under vistle/examples/example_net.vsl
-Additional data required for the example should be as small as possible and checked in under .../vistle/example/data. 
-(wir müssen sicherstellen das das dort auch gefunden wird)
+where example_net is a checked in .vsl int the module source directory.
 Precede this tag with a custom description of the example.
 
 As orientation you can work with a template:
 
     $<vistle/modules/category/yourmodule> cp .../vistle/doc/module-template.md yourmodule.md
 
+Additional data or pictures that are referenced in yourmodule.md via
 
+    [](some_file)
+
+are automatically copied into the documentation build.
 
 
 How to build Documentation for Read the Docs

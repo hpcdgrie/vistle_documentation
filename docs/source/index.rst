@@ -32,7 +32,7 @@ More infos about Architecture: https://vistle.io/architecture/
 
    Quickstart <quickstart/quickstart.md>
    Introduction <intro/index.rst>
-   Module Guide <modules/index.rst>
+   Module Guide <module/index.rst>
    Library Documentation <lib/index.rst>
 
 .. _dev-docs:

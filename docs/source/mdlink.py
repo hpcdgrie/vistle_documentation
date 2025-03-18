@@ -8,7 +8,8 @@ import os
 import sys
 from collections import namedtuple
 from clear import deleteFilesInDir
-
+import re
+import shutil
 
 if sys.platform == 'win32':
     BASE_DIR = os.path.dirname(os.path.realpath(__file__)).replace('\\', '/')
@@ -73,8 +74,11 @@ def createLinks(markdown_list, root_link_output_path):
 
 def addLinkToRSTFile(rst_path, md_link_filename):
     with open(rst_path, "a+") as arf:
-        if not strInFile(arf, md_link_filename):
-            arf.write(INDENT.format(md_link_filename))
+        basename = md_link_filename.split(".")[0] #fail to remove extention if filename contains more .
+        linkStr = basename + " <" + basename + "/" + md_link_filename + ">"
+        if not strInFile(arf, linkStr):
+            print("adding link: " + linkStr)
+            arf.write(INDENT.format(linkStr))
 
 
 def createRSTHeaderNameFromRootPath(path, file_path=False):
@@ -158,14 +162,37 @@ def run(
             for md in sorted(markdown_files)
         ]
         return
-
+    
     # deleteFilesInDir(root_link_output_path, pattern="*.md")
     index_link_list = createLinks(markdown_files, root_link_output_path)
     _ = [
         addLinkToRSTFile(file_link_output_path, link)
         for link in sorted(index_link_list)
     ]
+REG_HTML_IMG = r"<img[^\>]+/>"
+REG_IMAGE = re.compile(r"(?:\w+(?:-\w+)+|\w*)\.(?:jpg|gif|png|bmp)")
 
+def copyImage(sourceDir: str, destDir: str, imagefile: str):
+    if os.path.exists(sourceDir + "/" + imagefile):
+        shutil.copyfile(sourceDir + "/" + imagefile, destDir + "/" + imagefile)
+    else:
+        print("Image " + imagefile + " not found in " + sourceDir)
+
+# copy mainly generated example images from the source to the readTheDocs build dir
+# myst-parser does not support relative images in html format 
+def copyHtmlImages(moduleDir):
+    for root, dirs, files in os.walk(moduleDir, topdown=True):
+        for file in files:
+            if file.endswith(".md"):
+                with open(root + "/" + file, "r") as f:
+                    for line in f.readlines():
+                        for match in re.finditer(REG_IMAGE, line):
+                            if re.search(REG_HTML_IMG, line):
+                                module = root.split("/")[-1]
+                                destDir = BASE_DIR + "/../build/html/" + module
+                                if not pathExists(destDir):
+                                    os.makedirs(destDir)
+                                copyImage(root, destDir, match.group())
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(
