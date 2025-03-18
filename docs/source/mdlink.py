@@ -169,30 +169,6 @@ def run(
         addLinkToRSTFile(file_link_output_path, link)
         for link in sorted(index_link_list)
     ]
-REG_HTML_IMG = r"<img[^\>]+/>"
-REG_IMAGE = re.compile(r"(?:\w+(?:-\w+)+|\w*)\.(?:jpg|gif|png|bmp)")
-
-def copyImage(sourceDir: str, destDir: str, imagefile: str):
-    if os.path.exists(sourceDir + "/" + imagefile):
-        shutil.copyfile(sourceDir + "/" + imagefile, destDir + "/" + imagefile)
-    else:
-        print("Image " + imagefile + " not found in " + sourceDir)
-
-# copy mainly generated example images from the source to the readTheDocs build dir
-# myst-parser does not support relative images in html format 
-def copyHtmlImages(moduleDir):
-    for root, dirs, files in os.walk(moduleDir, topdown=True):
-        for file in files:
-            if file.endswith(".md"):
-                with open(root + "/" + file, "r") as f:
-                    for line in f.readlines():
-                        for match in re.finditer(REG_IMAGE, line):
-                            if re.search(REG_HTML_IMG, line):
-                                module = root.split("/")[-1]
-                                destDir = BASE_DIR + "/../build/html/" + module
-                                if not pathExists(destDir):
-                                    os.makedirs(destDir)
-                                copyImage(root, destDir, match.group())
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(

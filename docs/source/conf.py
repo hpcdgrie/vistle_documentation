@@ -15,14 +15,17 @@ import glob
 import sys
 sys.path.insert(0, os.path.abspath('.'))
 from mdlink import run
-from mdlink import copyHtmlImages
 from clear import deleteDir
+
+from datetime import datetime
+current_year = datetime.now().year
 
 
 # -- Project information -----------------------------------------------------
 project = 'Vistle'
-copyright = '2024, Martin Aumueller, Dennis Grieger, Leyla Kern, Marko Djuric, Uwe Wössner'
-author = 'Martin Aumueller, Dennis Grieger, Leyla Kern, Marko Djuric, Uwe Wössner'
+author = 'Martin Aumüller, Marko Djuric, Dennis Grieger, Leyla Kern, Susanne Malheiros, Uwe Wössner'
+author = 'the Vistle team'
+copyright = f'2012 - {current_year}, {author}'
 
 # -- General configuration ---------------------------------------------------
 
@@ -33,6 +36,7 @@ extensions = [
     'myst_parser',
     'sphinxcontrib.mermaid',
     'sphinx.ext.autosectionlabel',
+    'html_image_processor',
 ]
 
 # Tell sphinx what the primary language being documented is.
@@ -86,8 +90,6 @@ for file_path in glob.glob(os.path.join(moduleDirectory, '*')):
     if os.path.isdir(file_path):
         category = os.path.basename(file_path)
         run("../..", ["docs/source/module/" + category], "module/" + category, True)        
-
-copyHtmlImages(moduleDirectory)
 
 # run("../..", ["lib/vistle"], "lib", exclude_dirs=["toml"])
 # run("../..", ["app"], "app")
